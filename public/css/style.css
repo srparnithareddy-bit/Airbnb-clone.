@@ -1,0 +1,403 @@
+:root {
+    --primary-color: #fe424d;
+    --primary-hover: #e00b41;
+    --dark-text: #222222;
+    --gray-text: #717171;
+    --light-bg: #f7f7f7;
+    --border-color: #ebebeb;
+    --card-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--dark-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.main-container {
+    flex: 1;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.85rem 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.brand-logo {
+    color: var(--primary-color) !important;
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.brand-logo i {
+    font-size: 2rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--dark-text) !important;
+    border-radius: 20px;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #f7f7f7;
+    color: var(--primary-color) !important;
+}
+
+.nav-airbnb-your-home {
+    font-weight: 600;
+    color: #222222 !important;
+}
+
+/* Search Bar */
+.search-container {
+    max-width: 480px;
+    width: 100%;
+}
+
+.search-input-group {
+    border: 1px solid #dddddd;
+    border-radius: 40px;
+    padding: 0.3rem 0.5rem 0.3rem 1.2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-group:focus-within {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+    border-color: #b0b0b0;
+}
+
+.search-input-group input {
+    border: none;
+    outline: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    width: 100%;
+    background: transparent;
+}
+
+.search-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+}
+
+.search-btn:hover {
+    background-color: var(--primary-hover);
+    color: white;
+}
+
+/* User Menu Dropdown */
+.user-menu-btn {
+    border: 1px solid #dddddd;
+    border-radius: 25px;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.user-menu-btn:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.user-avatar-small {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Category Filter Bar */
+#filters {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1.2rem 0 0.8rem;
+    scrollbar-width: none; /* Firefox */
+}
+
+#filters::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.filter {
+    text-align: center;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    flex-shrink: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid transparent;
+}
+
+.filter:hover,
+.filter.active {
+    opacity: 1;
+    border-bottom: 2px solid var(--dark-text);
+    color: #000;
+}
+
+.filter div {
+    font-size: 1.35rem;
+    margin-bottom: 0.25rem;
+}
+
+.filter p {
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Tax Toggle */
+.tax-toggle {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    white-space: nowrap;
+    background: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.tax-info {
+    display: none;
+}
+
+/* Listing Cards */
+.listing-card {
+    border: none !important;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: transparent;
+    transition: transform 0.2s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-4px);
+}
+
+.listing-img-container {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 20 / 19;
+}
+
+.listing-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.listing-card:hover .listing-img-container img {
+    transform: scale(1.04);
+}
+
+.category-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(4px);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.listing-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-body {
+    padding: 0.75rem 0.2rem 0;
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: var(--dark-text);
+}
+
+.card-location {
+    font-size: 0.88rem;
+    color: var(--gray-text);
+    margin-bottom: 0.3rem;
+}
+
+.card-price {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--dark-text);
+}
+
+.card-price span {
+    font-weight: 400;
+    color: var(--gray-text);
+}
+
+/* Show Page */
+.show-img {
+    height: 420px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.host-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.booking-widget-card {
+    border: 1px solid #dddddd;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 90px;
+    background: #fff;
+}
+
+.booking-dates-box {
+    border: 1px solid #b0b0b0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.booking-dates-box .form-control {
+    border: none;
+    border-radius: 0;
+}
+
+.booking-btn {
+    background: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    transition: opacity 0.2s;
+}
+
+.booking-btn:hover {
+    opacity: 0.92;
+    color: white;
+}
+
+/* Map container */
+#map {
+    height: 380px;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    z-index: 1;
+}
+
+/* Reviews */
+.review-card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    background: #fff;
+    height: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+/* Buttons */
+.btn-airbnb {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.6rem 1.4rem;
+    transition: all 0.2s ease;
+}
+
+.btn-airbnb:hover {
+    background-color: var(--primary-hover);
+    color: white;
+}
+
+.btn-outline-dark {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background-color: #f7f7f7;
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0 1.5rem;
+    font-size: 0.88rem;
+    color: var(--gray-text);
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: var(--dark-text);
+    margin: 0 0.5rem;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
+    color: var(--dark-text);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.f-info-socials i:hover {
+    color: var(--primary-color);
+}

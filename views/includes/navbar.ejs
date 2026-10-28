@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-md sticky-top">
+    <div class="container-fluid px-lg-5">
+        <!-- Logo -->
+        <a class="navbar-brand brand-logo" href="/listings">
+            <i class="fa-brands fa-airbnb"></i>
+            <span>airbnb</span>
+        </a>
+
+        <!-- Search Bar -->
+        <div class="search-container mx-auto d-none d-md-block">
+            <form class="d-flex align-items-center" role="search" action="/listings" method="GET">
+                <div class="search-input-group w-100">
+                    <input 
+                        type="search" 
+                        name="search" 
+                        placeholder="Search destinations, villas, cities..." 
+                        aria-label="Search"
+                        value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+                    >
+                    <button class="search-btn ms-2" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNavAltMarkup" 
+            aria-controls="navbarNavAltMarkup" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <!-- Mobile search -->
+            <div class="d-md-none my-3">
+                <form class="d-flex align-items-center" role="search" action="/listings" method="GET">
+                    <div class="search-input-group w-100">
+                        <input 
+                            type="search" 
+                            name="search" 
+                            placeholder="Search destinations..." 
+                            value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+                        >
+                        <button class="search-btn ms-2" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="navbar-nav align-items-center gap-2">
+                <a class="nav-link nav-airbnb-your-home" href="/listings/new">
+                    Airbnb your home
+                </a>
+                
+                <% if (!currUser) { %>
+                    <a class="nav-link" href="/signup"><strong>Sign up</strong></a>
+                    <a class="nav-link" href="/login">Log in</a>
+                <% } else { %>
+                    <div class="dropdown">
+                        <button 
+                            class="user-menu-btn dropdown-toggle" 
+                            type="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false"
+                        >
+                            <i class="fa-solid fa-bars"></i>
+                            <img src="<%= currUser.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80' %>" alt="avatar" class="user-avatar-small">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2">
+                            <li><span class="dropdown-item-text fw-bold">Hello, <%= currUser.username %></span></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/bookings"><i class="fa-solid fa-suitcase-rolling me-2 text-primary"></i>My Trips & Bookings</a></li>
+                            <li><a class="dropdown-item" href="/profile"><i class="fa-regular fa-user me-2 text-primary"></i>My Profile & Listings</a></li>
+                            <li><a class="dropdown-item" href="/listings/new"><i class="fa-solid fa-plus me-2 text-primary"></i>Add New Listing</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Log out</a></li>
+                        </ul>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav>

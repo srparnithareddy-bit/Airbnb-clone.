@@ -1,0 +1,74 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold mb-1">My Trips & Reservations</h2>
+            <p class="text-muted">Manage your upcoming and past travel bookings.</p>
+        </div>
+    </div>
+
+    <% if (bookings.length === 0) { %>
+        <div class="row">
+            <div class="col-12 text-center py-5">
+                <i class="fa-solid fa-plane-departure fa-3x text-muted mb-3"></i>
+                <h4 class="fw-bold">No trips booked... yet!</h4>
+                <p class="text-muted">Time to dust off your bags and start planning your next great adventure.</p>
+                <a href="/listings" class="btn btn-airbnb mt-2">Start Exploring</a>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="row g-4">
+            <% for (let booking of bookings) { %>
+                <div class="col-lg-6">
+                    <div class="card p-3 shadow-sm border rounded-4 h-100">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-4">
+                                <img 
+                                    src="<%= booking.listing ? booking.listing.image.url : 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80' %>" 
+                                    alt="Stay thumbnail" 
+                                    class="img-fluid rounded-3" 
+                                    style="height: 120px; width: 100%; object-fit: cover;"
+                                >
+                            </div>
+                            <div class="col-8">
+                                <div class="d-flex justify-content-between align-items-start mb-1">
+                                    <h6 class="fw-bold mb-0 text-truncate me-2">
+                                        <%= booking.listing ? booking.listing.title : 'Listing' %>
+                                    </h6>
+                                    <span class="badge <%= booking.status === 'Confirmed' ? 'bg-success' : 'bg-secondary' %>">
+                                        <%= booking.status %>
+                                    </span>
+                                </div>
+                                <p class="text-muted small mb-2">
+                                    <i class="fa-solid fa-location-dot me-1 text-danger"></i>
+                                    <%= booking.listing ? `${booking.listing.location}, ${booking.listing.country}` : 'Destination' %>
+                                </p>
+                                <div class="small mb-2">
+                                    <i class="fa-regular fa-calendar-days me-1"></i>
+                                    <strong><%= new Date(booking.checkIn).toLocaleDateString() %></strong> &rarr; <strong><%= new Date(booking.checkOut).toLocaleDateString() %></strong>
+                                    (<%= booking.totalNights %> <%= booking.totalNights > 1 ? 'nights' : 'night' %>, <%= booking.guestsCount %> guest<%= booking.guestsCount > 1 ? 's' : '' %>)
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <div class="fw-bold text-dark">
+                                        Total: $<%= booking.totalPrice.toLocaleString() %>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <% if (booking.listing) { %>
+                                            <a href="/listings/<%= booking.listing._id %>" class="btn btn-sm btn-outline-dark">View Stay</a>
+                                        <% } %>
+                                        <% if (booking.status === 'Confirmed') { %>
+                                            <form action="/bookings/<%= booking._id %>/cancel" method="POST" onsubmit="return confirm('Cancel this reservation?');">
+                                                <button class="btn btn-sm btn-outline-danger">Cancel</button>
+                                            </form>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+</div>

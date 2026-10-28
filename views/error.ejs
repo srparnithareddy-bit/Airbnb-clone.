@@ -1,0 +1,15 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="container my-5 text-center">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 py-5">
+            <i class="fa-solid fa-triangle-exclamation fa-4x text-danger mb-3"></i>
+            <h1 class="fw-bold"><%= statusCode || 500 %></h1>
+            <h3 class="mb-3 text-secondary">Oops! Something went wrong</h3>
+            <div class="alert alert-danger" role="alert">
+                <%= message || 'An unexpected error occurred. Please try again.' %>
+            </div>
+            <a href="/listings" class="btn btn-airbnb mt-3">Return to Home</a>
+        </div>
+    </div>
+</div>

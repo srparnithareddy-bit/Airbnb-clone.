@@ -1,0 +1,129 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card p-4 p-md-5 shadow-sm border-0 rounded-4">
+                <div class="text-center mb-4">
+                    <i class="fa-brands fa-airbnb fa-3x text-danger mb-2"></i>
+                    <h2 class="fw-bold">Airbnb your home</h2>
+                    <p class="text-muted">It's easy to list your stay and start earning as an Airbnb host.</p>
+                </div>
+
+                <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label fw-semibold">Title</label>
+                        <input 
+                            name="listing[title]" 
+                            id="title" 
+                            type="text" 
+                            class="form-control form-control-lg" 
+                            placeholder="e.g. Modern Luxury Villa with Oceanfront Infinity Pool" 
+                            required
+                        >
+                        <div class="valid-feedback">Looks great!</div>
+                        <div class="invalid-feedback">Please provide a descriptive title.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label fw-semibold">Description</label>
+                        <textarea 
+                            name="listing[description]" 
+                            id="description" 
+                            class="form-control" 
+                            rows="4" 
+                            placeholder="Describe what makes your space special, amenities, neighborhood, and atmosphere..." 
+                            required
+                        ></textarea>
+                        <div class="invalid-feedback">Please write a short description of the place.</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label for="category" class="form-label fw-semibold">Category</label>
+                            <select name="listing[category]" id="category" class="form-select" required>
+                                <option value="Trending" selected>Trending</option>
+                                <option value="Rooms">Rooms</option>
+                                <option value="Iconic Cities">Iconic Cities</option>
+                                <option value="Mountains">Mountains</option>
+                                <option value="Castles">Castles</option>
+                                <option value="Amazing Pools">Amazing Pools</option>
+                                <option value="Camping">Camping</option>
+                                <option value="Farms">Farms</option>
+                                <option value="Arctic">Arctic</option>
+                                <option value="Beachfront">Beachfront</option>
+                                <option value="Luxury">Luxury</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="price" class="form-label fw-semibold">Price per night ($ USD)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input 
+                                    name="listing[price]" 
+                                    id="price" 
+                                    type="number" 
+                                    min="0" 
+                                    class="form-control" 
+                                    placeholder="150" 
+                                    required
+                                >
+                            </div>
+                            <div class="invalid-feedback">Please enter a valid nightly rate.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label fw-semibold">Upload Listing Cover Image</label>
+                        <input 
+                            name="listing[image]" 
+                            id="image" 
+                            type="file" 
+                            class="form-control" 
+                            accept="image/*"
+                        >
+                        <small class="text-muted">Or paste an image URL below if you don't have a local image file:</small>
+                        <input 
+                            name="listing[image]" 
+                            type="url" 
+                            class="form-control mt-2" 
+                            placeholder="https://images.unsplash.com/photo-..." 
+                        >
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label for="location" class="form-label fw-semibold">City / Location</label>
+                            <input 
+                                name="listing[location]" 
+                                id="location" 
+                                type="text" 
+                                class="form-control" 
+                                placeholder="e.g. Aspen, Colorado" 
+                                required
+                            >
+                            <div class="invalid-feedback">Please enter the location/city.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="country" class="form-label fw-semibold">Country</label>
+                            <input 
+                                name="listing[country]" 
+                                id="country" 
+                                type="text" 
+                                class="form-control" 
+                                placeholder="e.g. United States" 
+                                required
+                            >
+                            <div class="invalid-feedback">Please enter the country.</div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-airbnb btn-lg py-3">Publish Listing</button>
+                        <a href="/listings" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
